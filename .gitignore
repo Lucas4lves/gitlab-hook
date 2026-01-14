@@ -4,3 +4,4 @@
 /**/*.tfstate
 /**/*.out
 *.zip
+*.env
