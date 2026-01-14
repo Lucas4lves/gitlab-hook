@@ -23,3 +23,21 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.this.invoke_arn
 }
+
+resource "aws_api_gateway_deployment" "gateway_deployment" {
+  rest_api_id = aws_api_gateway_rest_api.rest_api.id
+  triggers = {
+    redeployment = sha1(jsonencode(aws_api_gateway_rest_api.rest_api.body))
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_api_gateway_stage" "gateway_stage" {
+  deployment_id = aws_api_gateway_deployment.gateway_deployment.id
+  rest_api_id = aws_api_gateway_rest_api.rest_api.id
+
+  stage_name = "v1"
+}
