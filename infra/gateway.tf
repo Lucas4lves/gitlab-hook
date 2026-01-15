@@ -21,7 +21,7 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   http_method             = aws_api_gateway_method.summarize_changes.http_method
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.this.invoke_arn
+  uri                     = aws_lambda_function.producer.invoke_arn
 }
 
 resource "aws_api_gateway_deployment" "gateway_deployment" {
