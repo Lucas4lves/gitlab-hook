@@ -33,11 +33,15 @@ resource "aws_api_gateway_deployment" "gateway_deployment" {
   lifecycle {
     create_before_destroy = true
   }
+
+  depends_on = [ aws_api_gateway_method.summarize_changes, aws_api_gateway_integration.lambda_integration ]
 }
 
 resource "aws_api_gateway_stage" "gateway_stage" {
   deployment_id = aws_api_gateway_deployment.gateway_deployment.id
-  rest_api_id = aws_api_gateway_rest_api.rest_api.id
+  rest_api_id   = aws_api_gateway_rest_api.rest_api.id
 
   stage_name = "v1"
+
+  depends_on = [ aws_api_gateway_deployment.gateway_deployment ]
 }

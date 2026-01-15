@@ -15,3 +15,17 @@ variable "lambda_function_name" {
   type    = string
   default = "summarize"
 }
+
+# SQS
+
+variable "regular_qeue_name" {
+  type    = string
+  default = "regular-qeue.fifo"
+}
+
+# COMMON
+
+variable "aws_region" {
+  type = string
+  default = "us-east-1"
+}
