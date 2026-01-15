@@ -7,7 +7,7 @@ data "archive_file" "source" {
   source_file = "${path.module}/../dist/index.js"
   output_path = "${path.module}/../summarize.zip"
 }
-resource "aws_lambda_function" "this" {
+resource "aws_lambda_function" "push_message_lambda" {
   filename      = data.archive_file.source.output_path
   function_name = var.lambda_function_name
   role          = aws_iam_role.lambda_role.arn
@@ -17,9 +17,11 @@ resource "aws_lambda_function" "this" {
 
   environment {
     variables = {
-      APP_PORT = 8081
+      REGION = var.aws_region,
+      QUEUE_URL = "${aws_sqs_queue.regular_qeue.url}",
     }
   }
+  depends_on = [ aws_sqs_queue.regular_qeue ]
 }
 
 resource "aws_lambda_permission" "lambda_permission" {
@@ -30,4 +32,5 @@ resource "aws_lambda_permission" "lambda_permission" {
 
   source_arn = "arn:${data.aws_partition.current.partition}:execute-api:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.summarize_changes.http_method}${aws_api_gateway_resource.rest_api_resource.path}"
 
+  depends_on = [ aws_lambda_function.this ]
 }

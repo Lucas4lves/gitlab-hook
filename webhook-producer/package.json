@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./dist/server.js",
-    "build": "npx esbuild src/index.ts --bundle --minify --sourcemap --platform=node --target=node20 --outfile=dist/index.js"
+    "build": "npx esbuild src/index.ts --bundle --minify --sourcemap --platform=node --target=node20 --outfile=dist/producer/index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +15,9 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@aws-sdk/client-sqs": "^3.969.0",
     "@types/aws-lambda": "^8.10.159",
+    "@types/node": "^25.0.8",
     "dotenv": "^17.2.3"
   }
 }
