@@ -45,3 +45,7 @@ resource "aws_api_gateway_stage" "gateway_stage" {
 
   depends_on = [ aws_api_gateway_deployment.gateway_deployment ]
 }
+
+output "api_gateway_invoke_url" {
+  value = aws_api_gateway_stage.gateway_stage.invoke_url
+}

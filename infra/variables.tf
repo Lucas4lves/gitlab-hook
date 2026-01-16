@@ -16,6 +16,11 @@ variable "lambda_function_name" {
   default = "summarize"
 }
 
+variable "gitlab_token_ssm_parameter_name" {
+  type = string
+  default = "/dev/gitlab_webhook_token"
+}
+
 # SQS
 
 variable "regular_qeue_name" {

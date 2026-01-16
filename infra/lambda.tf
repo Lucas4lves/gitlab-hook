@@ -26,6 +26,7 @@ resource "aws_lambda_function" "producer" {
     variables = {
       REGION = var.aws_region,
       QUEUE_URL = "${aws_sqs_queue.regular_qeue.url}",
+      GITLAB_TOKEN = data.aws_ssm_parameter.gitlab_token.value
     }
   }
   depends_on = [ aws_sqs_queue.regular_qeue ]
