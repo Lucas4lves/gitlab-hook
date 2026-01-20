@@ -1,7 +1,7 @@
 # API GATEWAY 
 variable "rest_api_name" {
   type    = string
-  default = "summarize_mr_changes"
+  default = ""
 }
 
 variable "rest_api_path" {
@@ -11,7 +11,7 @@ variable "rest_api_path" {
 
 variable "rest_api_key" {
   type = string
-  default = "webhook-producer-key"
+  default = ""
 }
 
 variable "rest_api_key_usage_plan" {
