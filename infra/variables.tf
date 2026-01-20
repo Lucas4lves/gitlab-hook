@@ -9,6 +9,16 @@ variable "rest_api_path" {
   default = "summarize"
 }
 
+variable "rest_api_key" {
+  type = string
+  default = "webhook-producer-key"
+}
+
+variable "rest_api_key_usage_plan" {
+  type = string
+  default = "webhook-producer-usage-plan"
+}
+
 # LAMBDA
 
 variable "lambda_function_name" {

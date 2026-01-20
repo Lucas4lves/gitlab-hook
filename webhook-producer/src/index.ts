@@ -19,6 +19,7 @@ export const handler = async ( e : APIGatewayProxyEvent ) : Promise<APIGatewayPr
         }
     }
 
+
     if(!validateToken(e.headers['x-gitlab-token'])){
         return {
             statusCode: 401,

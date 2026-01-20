@@ -26,7 +26,7 @@ resource "aws_lambda_function" "producer" {
     variables = {
       REGION = var.aws_region,
       QUEUE_URL = "${aws_sqs_queue.regular_qeue.url}",
-      GITLAB_TOKEN = data.aws_ssm_parameter.gitlab_token.value
+      GITLAB_TOKEN = data.aws_ssm_parameter.gitlab_token.value,
     }
   }
   depends_on = [ aws_sqs_queue.regular_qeue ]
@@ -38,7 +38,7 @@ resource "aws_lambda_permission" "lambda_permission" {
   function_name = aws_lambda_function.producer.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "arn:${data.aws_partition.current.partition}:execute-api:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.summarize_changes.http_method}${aws_api_gateway_resource.rest_api_resource.path}"
+  source_arn = "arn:${data.aws_partition.current.partition}:execute-api:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method.webhook-producer.http_method}${aws_api_gateway_resource.rest_api_resource.path}"
 
   depends_on = [ aws_lambda_function.producer ]
 }
