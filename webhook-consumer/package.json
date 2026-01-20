@@ -1,0 +1,22 @@
+{
+  "name": "webhook-consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx esbuild src/index.ts --bundle --minify --sourcemap --platform=node --target=node20 --outfile=../dist/consumer/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.970.0",
+    "@types/aws-lambda": "^8.10.159",
+    "@types/node": "^25.0.9",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.2"
+  }
+}

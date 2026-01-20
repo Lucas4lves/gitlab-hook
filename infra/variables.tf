@@ -1,7 +1,7 @@
 # API GATEWAY 
 variable "rest_api_name" {
   type    = string
-  default = "summarize_mr_changes"
+  default = ""
 }
 
 variable "rest_api_path" {
@@ -9,11 +9,26 @@ variable "rest_api_path" {
   default = "summarize"
 }
 
+variable "rest_api_key" {
+  type = string
+  default = ""
+}
+
+variable "rest_api_key_usage_plan" {
+  type = string
+  default = "webhook-producer-usage-plan"
+}
+
 # LAMBDA
 
 variable "lambda_function_name" {
   type    = string
   default = "summarize"
+}
+
+variable "gitlab_token_ssm_parameter_name" {
+  type = string
+  default = "/dev/gitlab_webhook_token"
 }
 
 # SQS

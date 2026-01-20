@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx esbuild src/index.ts --bundle --minify --sourcemap --platform=node --target=node20 --outfile=dist/producer/index.js"
+    "build": "npx esbuild src/index.ts --bundle --minify --sourcemap --platform=node --target=node20 --outfile=../dist/producer/index.js"
   },
   "keywords": [],
   "author": "",
