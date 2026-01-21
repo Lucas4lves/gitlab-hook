@@ -9,6 +9,16 @@ const gitlabToken = process.env.GITLAB_TOKEN
 export const handler = async ( e : APIGatewayProxyEvent ) : Promise<APIGatewayProxyResult>=> {
     const body = e.body? JSON.parse(e.body) : {}
 
+    if(!e.headers){
+        return {
+            statusCode: 400,
+            body: JSON.stringify({
+                success: false,
+                error: "Missing required headers"
+            })
+        }
+    }
+
     if(!e.headers['x-gitlab-token']){
         return {
             statusCode: 400,
