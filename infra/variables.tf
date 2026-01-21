@@ -1,7 +1,14 @@
+# REMOTE BACKEND
+
+variable "bucket_name" {
+  type = string
+  default = ""
+}
+
 # API GATEWAY 
 variable "rest_api_name" {
   type    = string
-  default = ""
+  default = "gitlab-webhook"
 }
 
 variable "rest_api_path" {
